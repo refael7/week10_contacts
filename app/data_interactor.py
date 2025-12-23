@@ -1,3 +1,5 @@
+import os
+import psycopg2
 class Contact:
     def __init__(self, id, first_name, last_name, phone_number):
         self.id = id
@@ -12,5 +14,17 @@ class Contact:
             "last_name": self.last_name,
             "phone_number": self.phone_number
         }
+
+def get_connection():
+    conn = psycopg2.connect(
+    db_password = os.getenv("DB_PASSWORD"),
+    db_host = os.getenv("DB_HOST"),
+    db_port = os.getenv("DB_PORT"),
+    db_user = os.getenv("DB_USER"),
+    db_name = os.getenv("DB_NAME"))
+    return conn
+
+
+
 
 
