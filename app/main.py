@@ -1,3 +1,6 @@
+from fontTools.merge.util import first
+
+
 class Contact:
     def __init__(self,id, first_name, last_name, phone_number):
         self.id=id
@@ -5,4 +8,17 @@ class Contact:
         self.last_name=last_name
         self.phone_number=phone_number
 
-    def 
+    def convert_contact_to_dictionary(self):
+        return {
+            "id": self.id,
+            "first_name": self.first_name,
+            "last_name": self.last_name,
+            "phone_number": self.phone_number
+        }
+
+    def create_contact(self):
+
+
+
+c1=Contact(123,"refael","saidov","0524975001")
+print(c1.convert_contact_to_dictionary())
