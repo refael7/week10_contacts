@@ -1,7 +1,9 @@
 import os
-import psycopg2
+import mysql.connector
+from dotenv import load_dotenv
+load_dotenv()
 class Contact:
-    def __init__(self, id, first_name, last_name, phone_number):
+    def __init__(self, id:int, first_name:str, last_name:str, phone_number:str):
         self.id = id
         self.first_name = first_name
         self.last_name = last_name
@@ -16,13 +18,28 @@ class Contact:
         }
 
 def get_connection():
-    conn = psycopg2.connect(
-    db_password = os.getenv("DB_PASSWORD"),
-    db_host = os.getenv("DB_HOST"),
-    db_port = os.getenv("DB_PORT"),
-    db_user = os.getenv("DB_USER"),
-    db_name = os.getenv("DB_NAME"))
-    return conn
+    try:
+        conn = mysql.connector.connect(
+            host=os.getenv("DB_HOST"),
+            port=int(os.getenv("DB_PORT")),
+            user=os.getenv("DB_USER"),
+            password=os.getenv("DB_PASSWORD"),
+            database=os.getenv("DB_NAME")
+        )
+        return conn
+    except Exception as e :
+        print(f"Error connecting to database:{e}")
+        return None
+
+
+
+
+
+
+
+
+
+
 
 
 
