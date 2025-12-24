@@ -58,7 +58,7 @@ def create_new_contact(contact: ContactCreate):
         )
 
 @app.put("/contacts/{id}")
-def update_existing_contact(contact_id: int, contact: ContactCreate):
+def update_existing_contact(id: int, contact: ContactCreate):
     if (
         contact.first_name is None and
         contact.last_name is None and
@@ -71,7 +71,7 @@ def update_existing_contact(contact_id: int, contact: ContactCreate):
 
     try:
         updated = update_contact(
-            contact_id=contact_id,
+            id=id,
             first_name=contact.first_name,
             last_name=contact.last_name,
             phone_number=contact.phone_number
